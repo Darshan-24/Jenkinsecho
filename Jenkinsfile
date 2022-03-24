@@ -1,20 +1,23 @@
 pipeline {
     agent any
     stages {
-        stage('checkout') { 
-            steps {
-              echo "Good morning"
+        stage('Run Tests') {
+            parallel {
+                stage('Test On Windows') {
+                    
+                    steps {
+                        sh "echo stage 1"
+                    }
+                    
+                }
+                stage('Test On Linux') {
+                    
+                    steps {
+                        sh "echo stage 2"
+                    }
+                   
+                }
             }
         }
-stage('build') { 
-            steps {
-              echo "I am Darshan"
-            }
-        }  
-        stage('deploy') {
-            steps {            
-          echo "working on devops"
-            }
-        }
-}
+    }
 }
